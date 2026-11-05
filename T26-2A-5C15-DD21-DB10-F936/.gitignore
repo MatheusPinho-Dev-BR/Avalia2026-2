@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.dev.vars
+.env
+.DS_Store
+Thumbs.db
+
+# Exclude unrelated student projects nested in this submission folder.
+T26-2A-*/

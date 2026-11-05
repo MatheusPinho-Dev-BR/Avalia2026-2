@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef2f6">
+  <title>Painel de Diagnóstico — T26-2A-5C15-DD21-DB10-F936</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/" aria-label="Painel de Diagnóstico, início">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>Painel de Diagnóstico</span>
+      </a>
+      <div class="discord-profile" id="discordProfile">
+        <img class="profile-avatar" id="discordAvatar" alt="" hidden>
+        <span class="profile-label" id="discordUserText">Verificando autenticação…</span>
+        <span class="profile-id" id="discordUserId"></span>
+        <a class="login-link" id="discordLoginLink" href="/api/auth/discord" hidden>
+          Entrar com Discord
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card intro-card" aria-labelledby="pageTitle">
+      <span class="pill">Teste de entrega</span>
+      <h1 id="pageTitle">Status do ambiente</h1>
+      <p class="desc">
+        Consulte a conexão com a API e registre uma mensagem de diagnóstico.
+        A gravação exige uma sessão autenticada.
+      </p>
+
+      <form class="record-form" id="recordForm">
+        <label class="sr-only" for="recordInput">Mensagem do registro</label>
+        <input
+          class="input-text"
+          id="recordInput"
+          name="conteudo"
+          type="text"
+          maxlength="500"
+          placeholder="Escreva uma mensagem de diagnóstico"
+          autocomplete="off"
+          required
+        >
+        <button class="btn-primary" id="sendBtn" type="submit">
+          Registrar diagnóstico
+        </button>
+      </form>
+      <p class="status-message" id="statusMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card records-card" aria-labelledby="recordsHeading">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Atividade</span>
+          <h2 id="recordsHeading">Registros recentes</h2>
+        </div>
+        <span class="api-indicator" id="apiIndicator">Verificando API…</span>
+      </div>
+      <ul class="records-list" id="recordsList" aria-live="polite" aria-busy="true">
+        <li class="empty-state">Carregando registros…</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer id="projectFooter">
+    <span>Chave Única de Auditoria</span>
+    <code>T26-2A-5C15-DD21-DB10-F936</code>
+  </footer>
+</body>
+</html>
