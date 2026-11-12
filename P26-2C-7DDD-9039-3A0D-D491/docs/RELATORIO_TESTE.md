@@ -1,11 +1,11 @@
 # Relatório de teste
 
-Verificações locais iniciais. Os resultados de publicação e integrações que exigem credenciais só podem ser concluídos depois de configurar Discord, Cloudflare e o repositório GitHub.
+Verificações locais e de produção concluídas. O teste de login Discord foi confirmado pelo usuário; a integração GitHub foi conferida nas configurações do Cloudflare Pages.
 
 | Verificação | Resultado | Evidência / observação |
 |---|---|---|
 | URL HTTPS abre sem erro | OK | `https://financeiro-bj1.pages.dev/` retornou HTTP 200 e foi aberta no navegador. |
-| Login Discord mostra nome e avatar | PENDENTE | A URL de callback está cadastrada e `/api/login` redireciona ao Discord com state; a autorização interativa e a exibição do perfil ainda precisam ser conferidas com uma conta. |
+| Login Discord mostra nome e avatar | OK | Login interativo concluído e nome/avatar confirmados pelo usuário; credenciais guardadas como secrets no Cloudflare. |
 | Sem login, `/api/transactions` retorna 401 | OK | Pages Functions local e endpoint HTTPS publicado retornaram HTTP 401 sem sessão. |
 | Criar, listar, editar e excluir funcionam | OK | Teste HTTP local autenticado com D1: POST, GET, PUT e DELETE aprovados. |
 | Valor inválido é rejeitado no servidor | OK | POST rejeitou texto, zero, negativo e data inválida com HTTP 400. |
@@ -16,7 +16,7 @@ Verificações locais iniciais. Os resultados de publicação e integrações qu
 | Responsivo (celular e desktop) | OK | Navegador local conferido em 390px e 1280px, sem rolagem horizontal; CSS adaptativo. |
 | Sem frameworks no frontend | OK | HTML, CSS e JavaScript nativos; sem dependências de interface. |
 | Chave Única no README e no rodapé | OK | Presente nos dois locais solicitados. |
-| LICENSE MIT, repositório público, agents/harness/skills presentes | PENDENTE | Os arquivos de licença/documentação estão preparados; o fork público existente ainda não recebeu a pasta nem o Pull Request. |
+| LICENSE MIT, repositório público, agents/harness/skills presentes | OK | Fork público, LICENSE MIT, três agentes, harness, skills e pasta do projeto no PR #27; o PR permanece aberto para avaliação oficial. |
 
 ## Evidência de teste local
 
@@ -24,5 +24,6 @@ Verificações locais iniciais. Os resultados de publicação e integrações qu
 - 11 verificações HTTP passaram com D1 local e cookies de sessão assinados para dois usuários de teste: perfil, criação/listagem/edição/exclusão, filtros, saldo, rejeição de valores inválidos/data inválida e isolamento.
 - 10 verificações adicionais passaram contra o D1 e as Functions em produção com sessões temporárias assinadas; usuários e transações de teste foram removidos e o `SESSION_SECRET` foi rotacionado em seguida.
 - Navegador: formulário de criação, filtro, edição e exclusão testados; saldo e gráfico conferidos; viewport móvel de 390px sem overflow horizontal.
-- Cloudflare Pages: deploy de produção concluído, home HTTPS 200, `/api/transactions` sem sessão 401 e `/api/login` 302 para o Discord com callback/state.
-- Os testes locais e o deploy HTTPS estão verificados; falta concluir a autorização OAuth real e testar com duas contas Discord.
+- Cloudflare Pages: deploy HTTPS ativo; `/api/transactions` sem sessão retorna 401 e `/api/login` redireciona ao Discord com callback/state.
+- Git integration: Pages conectado ao repositório `MatheusPinho-Dev-BR/Avalia2026-2`, raiz `P26-2C-7DDD-9039-3A0D-D491`, saída `public`, branch de produção `submission/P26-2C-7DDD-9039-3A0D-D491-upstream`; deploy automático após conexão observado.
+- PR oficial #27 aberto e validado pelo workflow inicial do repositório; merge/nota aguardam avaliação oficial.
